@@ -11,6 +11,5 @@ public static class KohaErrors
         Error.Unauthorized("Koha.SessionExpired", message);
 
     public static Error KohaPatronNotFound(string message) =>
-        Error.NotFound("Koha.PatroNotFound", message);
-
+        Error.NotFound("Koha.PatronNotFound", message);
 }

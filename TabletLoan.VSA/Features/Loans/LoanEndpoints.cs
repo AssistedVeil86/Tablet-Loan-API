@@ -23,9 +23,8 @@ public static class LoanEndpoints
 
     public static WebApplication MapLoanEndpoints(this WebApplication app)
     {
-        var group = app.MapGroup("loans")
-            .WithTags("Loans")
-            .AddEndpointFilter<TurnstileValidationFilter>();
+        var group = app.MapGroup("api/loans")
+            .WithTags("Loans");
 
         group.MapCreateLoanEndpoint();
         group.MapUpdateStatusEndpoint();
