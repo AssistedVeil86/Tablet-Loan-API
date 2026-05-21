@@ -72,7 +72,7 @@ internal sealed class CreateLoanHandler(
 
         backgroundJobs.Schedule<ITabletBlockJob>(
             job => job.ExcuteTabletBlockAsync(availableTablet.Id),
-            TimeSpan.FromHours(1));
+            TimeSpan.FromMinutes(2));
 
         context.Loans.Add(loan);
         await context.SaveChangesAsync(ct);
