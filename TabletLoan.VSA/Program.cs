@@ -35,6 +35,8 @@ builder.Services.AddScoped<KohaStudentService>();
 builder.Services.AddScoped<AirDroidTabletService>();
 builder.Services.AddScoped<DateTimeService>();
 
+builder.Services.RegisterValidators();
+
 //Add RetroFit Clients
 builder.Services.AddTurnstileClient(builder.Configuration);
 builder.Services.AddAirDroidClients(builder.Configuration);

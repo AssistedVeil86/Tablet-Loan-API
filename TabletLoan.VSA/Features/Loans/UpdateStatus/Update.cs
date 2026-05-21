@@ -17,6 +17,7 @@ public static class UpdateStatusEndpoint
             .WithName("UpdateLoanStatus")
             .WithSummary("Update the Loan Status to DONE")
             .WithDescription("Update the Loan Status after confirming the physical devices has been returned")
+            .WithRequestValidation<UpdateStatusRequest>()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
         return route;

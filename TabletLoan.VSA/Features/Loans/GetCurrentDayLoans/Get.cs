@@ -12,7 +12,11 @@ public static class GetCurrentDayLoansEndpoint
 {
     public static RouteGroupBuilder MapGetCurrentDayLoansEndpoint(this RouteGroupBuilder route)
     {
-        route.MapGet("/", Handler);
+        route.MapGet("/", Handler)
+            .WithName("GetCurrentDayLoans")
+            .WithSummary("Gets all the Loans done throughout the current day")
+            .WithDescription("Gets all the Paginated Loans done within the operation day")
+            .WithRequestValidation<GetCurrentDayLoansRequest>();
 
         return route;
     }

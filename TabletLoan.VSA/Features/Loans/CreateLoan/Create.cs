@@ -22,6 +22,7 @@ public static class CreateLoanEndpoint
             .WithName("CreateLoan")
             .WithSummary("Create a Loan for a Student")
             .WithDescription("Creates a Loan for the student and unlocks the physical devices")
+            .WithRequestValidation<LoanRequest>()
             .ProducesProblem(StatusCodes.Status404NotFound);
 
         return route;
