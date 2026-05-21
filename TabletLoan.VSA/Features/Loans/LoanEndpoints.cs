@@ -1,6 +1,7 @@
 using TabletLoan.VSA.Features.Loans.BackgroundJobs;
 using TabletLoan.VSA.Features.Loans.BackgroundJobs.Implementation;
 using TabletLoan.VSA.Features.Loans.CreateLoan;
+using TabletLoan.VSA.Features.Loans.GetCurrentDayLoans;
 using TabletLoan.VSA.Features.Loans.UpdateStatus;
 using TabletLoan.VSA.Infrastructure.Filters;
 
@@ -17,6 +18,7 @@ public static class LoanEndpoints
     {
         services.AddScoped<CreateLoanHandler>();
         services.AddScoped<UpdateStatusHandler>();
+        services.AddScoped<GetCurrentDayLoansHandler>();
 
         return services;
     }
@@ -28,6 +30,7 @@ public static class LoanEndpoints
 
         group.MapCreateLoanEndpoint();
         group.MapUpdateStatusEndpoint();
+        group.MapGetCurrentDayLoansEndpoint();
 
         return app;
     }

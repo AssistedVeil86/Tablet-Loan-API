@@ -33,6 +33,7 @@ builder.Services.ConfigureCors();
 
 builder.Services.AddScoped<KohaStudentService>();
 builder.Services.AddScoped<AirDroidTabletService>();
+builder.Services.AddScoped<DateTimeService>();
 
 //Add RetroFit Clients
 builder.Services.AddTurnstileClient(builder.Configuration);

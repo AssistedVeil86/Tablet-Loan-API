@@ -13,6 +13,7 @@ public static class MappingExtensions
             loan.StudentName,
             loan.StudentLastname,
             loan.status,
-            loan.LoanStartedAt);
+            loan.LoanStartedAt,
+            loan.LoanEndsAt);
     }
 }

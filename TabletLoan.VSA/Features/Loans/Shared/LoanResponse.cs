@@ -8,4 +8,5 @@ public sealed record LoanResponse(
     string StudentName,
     string StudentLastname,
     LoanStatus Status,
-    DateTimeOffset LoanStartedAt);
+    DateTimeOffset LoanStartedAt,
+    DateTimeOffset LoanEndsAt);
