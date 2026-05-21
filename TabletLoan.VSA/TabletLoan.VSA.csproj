@@ -1,0 +1,47 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>592264e6-1fd9-46c3-8d4a-24c7758b50c5</UserSecretsId>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ErrorOr" Version="2.1.0" />
+    <PackageReference Include="Hangfire" Version="1.8.23" />
+    <PackageReference Include="Hangfire.AspNetCore" Version="1.8.23" />
+    <PackageReference Include="Hangfire.PostgreSql" Version="1.21.1+1" />
+    <PackageReference Include="Hangfire.SqlServer" Version="1.8.23" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.5" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="10.0.1" />
+    <PackageReference Include="Refit.HttpClientFactory" Version="10.1.6" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.14.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain/Enums/" />
+    <Folder Include="Domain/Errors/" />
+    <Folder Include="Features/Loans/BackgroundJobs/" />
+    <Folder Include="Features/Loans/BackgroundJobs/Implementation/" />
+    <Folder Include="Features/Loans/CreateLoan/" />
+    <Folder Include="Features/Loans/UpdateStatus/" />
+    <Folder Include="Infrastructure/Extensions/" />
+    <Folder Include="Infrastructure/ExternalAPIs/AirDroid/BackgroundJobs/Implementation/" />
+    <Folder Include="Infrastructure/ExternalAPIs/AirDroid/Errors/" />
+    <Folder Include="Infrastructure/ExternalAPIs/AirDroid/Options/" />
+    <Folder Include="Infrastructure/Hubs/" />
+  </ItemGroup>
+
+</Project>
