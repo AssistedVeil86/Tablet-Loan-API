@@ -75,7 +75,7 @@ using (var scope = app.Services.CreateScope())
     var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
     recurringJobManager.AddOrUpdate<IRefreshAirDroidTokenJob>(
-        "airdroid-daily-signin", job => job.ExcuteSignInAsync(), "0 6 * * *");
+        "airdroid-daily-signin", job => job.ExcuteSignInAsync(), Cron.MinuteInterval(10)); //"0 6 * * *"
 
     recurringJobManager.AddOrUpdate<ISignOutAirDroidJob>(
         "airdroid-daily-signout", job => job.ExecuteSignOutAsync(), "0 20 * * *");
