@@ -95,5 +95,6 @@ app.UseCors("AllowReact");
 
 app.MapLoanEndpoints();
 app.MapHub<LoanNotificationHub>("/loanNotifications");
+app.MapHub<LoanStatusHub>("/loanStatusNotifications");
 
 app.Run();
