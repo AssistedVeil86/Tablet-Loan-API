@@ -40,7 +40,7 @@ public static class UpdateStatusEndpoint
 
 internal sealed class UpdateStatusHandler(
     AppDbContext context,
-    IHubContext<LoanNotificationHub> hubContext)
+    IHubContext<LoanStatusHub> hubContext)
 {
     public async Task<ErrorOr<LoanResponse>> HandleAsync(
         UpdateStatusRequest req, int id, CancellationToken ct)
