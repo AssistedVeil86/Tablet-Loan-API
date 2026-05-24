@@ -2,6 +2,7 @@ using ErrorOr;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TabletLoan.VSA.Domain.Enums;
 using TabletLoan.VSA.Domain.Errors;
 using TabletLoan.VSA.Features.Loans.Shared;
 using TabletLoan.VSA.Infrastructure.Data;
@@ -45,7 +46,12 @@ internal sealed class UpdateStatusHandler(AppDbContext context)
         if (loan is null)
             return LoanErrors.LoanNotFound($"Loan with Id {id} not found");
 
+        if (loan.status == LoanStatus.DONE)
+            return LoanErrors.TabletStatusError($"Loan with {id} is already DONE");
+
         loan.status = req.Status;
+        loan.UpdateModified();
+        
         await context.SaveChangesAsync(ct);
 
         return loan.ToResponse();
