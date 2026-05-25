@@ -22,8 +22,8 @@ public sealed class KohaStudentService(
         if (string.IsNullOrEmpty(activeCookie))
         {
             //Retry Koha Login
-            backgroundJobs.Schedule<IRefreshKohaSessionJob>(
-                job => job.ExecuteLoginAsync(), TimeSpan.FromSeconds(5));
+            backgroundJobs.Enqueue<IRefreshKohaSessionJob>(
+                job => job.ExecuteLoginAsync());
 
             return KohaErrors.KohaNoSessionError("No Active Session Found in Koha");
         }
