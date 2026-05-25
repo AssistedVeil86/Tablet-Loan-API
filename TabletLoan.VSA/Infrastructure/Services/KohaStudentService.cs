@@ -11,7 +11,7 @@ namespace TabletLoan.VSA.Infrastructure.Services;
 public sealed class KohaStudentService(
     IKohaClient kohaClient,
     KohaSessionManager sessionManager,
-    BackgroundJobClient backgroundJobs)
+    IBackgroundJobClient backgroundJobs)
 {
     public async Task<ErrorOr<KohaPatron>> ValidateAndGetStudentAsync(string cif)
     {
