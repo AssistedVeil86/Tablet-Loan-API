@@ -32,7 +32,14 @@ public sealed class KohaStudentService(
         if (!kohaResponse.Success)
         {
             if (kohaResponse.Error == "Sesión expirada")
+            {
+                //Retry Koha Login
+                backgroundJobs.Enqueue<IRefreshKohaSessionJob>(
+                    job => job.ExecuteLoginAsync());
+                    
                 return KohaErrors.KohaSessionExpired("Koha's Session has expired");
+            }
+
         }
 
         if (kohaResponse.Patrons.Count == 0)
