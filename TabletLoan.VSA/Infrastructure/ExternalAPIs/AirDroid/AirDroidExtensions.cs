@@ -8,7 +8,8 @@ namespace TabletLoan.VSA.Infrastructure.ExternalAPIs.AirDroid;
 public static class AirDroidExtensions
 {
     public static InstantBlockRequest ToRequest(
-        string pToken, string deviceId, string cDeviceId, int enabled, int limitTime, int appVersion)
+        string pToken, string deviceId, string cDeviceId,
+        int enabled, int limitTime, int appVersion)
     {
         return new InstantBlockRequest(
             Ptoken: pToken,
@@ -17,7 +18,7 @@ public static class AirDroidExtensions
             Timestamp: DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
             Device_type: 75,
             App_version: appVersion,
-            Language: "es-es",
+            Language: "en",
             Nonce: DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 10,
             C_device_id: cDeviceId,
             Enabled: enabled,

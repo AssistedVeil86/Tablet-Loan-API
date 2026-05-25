@@ -23,7 +23,7 @@ public class RefreshAirDroidTokenJob(
                 Nonce: DateTimeOffset.UtcNow.ToUnixTimeSeconds() + 10,
                 ModeType: 101,
                 CaptchaType: 1,
-                Fp: "38f0c02d57891a602e5d6cd6f2f2f064",
+                Fp: options.Value.Fp,
                 Mail: options.Value.Mail,
                 Pwd: options.Value.Pwd,
                 DataRegion: "Global"

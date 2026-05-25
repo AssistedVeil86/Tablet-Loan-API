@@ -25,7 +25,7 @@ public class TabletBlockJob(
         var request = AirDroidExtensions.ToRequest(
             tokenManager.GetToken(),
             tablet.AirDroidDeviceId,
-            tablet.AirDroidCDeviceId, 1, -2, 
+            tablet.AirDroidCDeviceId, 1, -2,
             options.Value.AppVersion);
 
         var response = await airDroidClient.BlockTabletAsync(request);

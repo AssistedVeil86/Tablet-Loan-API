@@ -6,4 +6,5 @@ public class AirDroidOptions
     public string Mail { get; set; } = string.Empty;
     public string Pwd { get; set; } = string.Empty;
     public int AppVersion { get; set; }
+    public string Fp { get; set; } = string.Empty;
 }
