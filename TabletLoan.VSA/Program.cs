@@ -81,11 +81,11 @@ using (var scope = app.Services.CreateScope())
         "airdroid-daily-signout", job => job.ExecuteSignOutAsync(), "0 20 * * *");
 
     recurringJobManager.AddOrUpdate<IRefreshKohaSessionJob>(
-        "koha-refresh-session", job => job.ExecuteLoginAsync(), Cron.HourInterval(8));
+        "koha-refresh-session", job => job.ExecuteLoginAsync(), Cron.MinuteInterval(20));
 
-    var backgroundJobs = scope.ServiceProvider.GetRequiredService<IBackgroundJobClient>();
-    backgroundJobs.Enqueue<IRefreshAirDroidTokenJob>(job => job.ExecuteSignInAsync());
-    backgroundJobs.Enqueue<IRefreshKohaSessionJob>(job => job.ExecuteLoginAsync());
+    // var backgroundJobs = scope.ServiceProvider.GetRequiredService<IBackgroundJobClient>();
+    // backgroundJobs.Enqueue<IRefreshAirDroidTokenJob>(job => job.ExecuteSignInAsync());
+    // backgroundJobs.Enqueue<IRefreshKohaSessionJob>(job => job.ExecuteLoginAsync());
 }
 
 app.UseHttpsRedirection();

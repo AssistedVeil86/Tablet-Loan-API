@@ -48,6 +48,10 @@ public sealed class KohaStudentService(
         }
         catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
         {
+            //Retry Koha Login
+            backgroundJobs.Enqueue<IRefreshKohaSessionJob>(
+                job => job.ExecuteLoginAsync());
+
             return KohaErrors.KohaSessionExpired("Koha's Session has expired (HTTP 401).");
         }
         catch (ApiException ex)
