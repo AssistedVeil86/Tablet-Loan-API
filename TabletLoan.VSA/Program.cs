@@ -75,17 +75,16 @@ using (var scope = app.Services.CreateScope())
     var recurringJobManager = scope.ServiceProvider.GetRequiredService<IRecurringJobManager>();
 
     recurringJobManager.AddOrUpdate<IRefreshAirDroidTokenJob>(
-        "airdroid-daily-signin", job => job.ExcuteSignInAsync(), Cron.MinuteInterval(10)); //"0 6 * * *"
+        "airdroid-daily-signin", job => job.ExecuteSignInAsync(), "0 6 * * *"); //"0 6 * * *"
 
     recurringJobManager.AddOrUpdate<ISignOutAirDroidJob>(
         "airdroid-daily-signout", job => job.ExecuteSignOutAsync(), "0 20 * * *");
 
     recurringJobManager.AddOrUpdate<IRefreshKohaSessionJob>(
-        "koha-refresh-session", job => job.ExecuteLoginAsync(), Cron.MinuteInterval(1)
-    );
+        "koha-refresh-session", job => job.ExecuteLoginAsync(), Cron.HourInterval(8));
 
     var backgroundJobs = scope.ServiceProvider.GetRequiredService<IBackgroundJobClient>();
-    backgroundJobs.Enqueue<IRefreshAirDroidTokenJob>(job => job.ExcuteSignInAsync());
+    backgroundJobs.Enqueue<IRefreshAirDroidTokenJob>(job => job.ExecuteSignInAsync());
     backgroundJobs.Enqueue<IRefreshKohaSessionJob>(job => job.ExecuteLoginAsync());
 }
 

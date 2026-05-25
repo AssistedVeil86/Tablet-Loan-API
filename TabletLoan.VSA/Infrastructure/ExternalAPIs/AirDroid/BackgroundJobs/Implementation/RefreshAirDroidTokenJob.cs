@@ -11,7 +11,7 @@ public class RefreshAirDroidTokenJob(
     ILogger<RefreshAirDroidTokenJob> logger
 ) : IRefreshAirDroidTokenJob
 {
-    public async Task ExcuteSignInAsync()
+    public async Task ExecuteSignInAsync()
     {
         logger.LogInformation("Starting AirDroid Token Refresh...");
 

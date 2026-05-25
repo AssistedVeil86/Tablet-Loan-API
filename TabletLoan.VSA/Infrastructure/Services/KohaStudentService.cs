@@ -1,5 +1,7 @@
 using ErrorOr;
+using Hangfire;
 using TabletLoan.VSA.Infrastructure.ExternalAPIs.Koha;
+using TabletLoan.VSA.Infrastructure.ExternalAPIs.Koha.BackgroundJobs;
 using TabletLoan.VSA.Infrastructure.ExternalAPIs.Koha.DTOs.Request;
 using TabletLoan.VSA.Infrastructure.ExternalAPIs.Koha.DTOs.Response;
 using TabletLoan.VSA.Infrastructure.ExternalAPIs.Koha.Errors;
@@ -8,14 +10,21 @@ namespace TabletLoan.VSA.Infrastructure.Services;
 
 public sealed class KohaStudentService(
     IKohaClient kohaClient,
-    KohaSessionManager sessionManager)
+    KohaSessionManager sessionManager,
+    BackgroundJobClient backgroundJobs)
 {
     public async Task<ErrorOr<KohaPatron>> ValidateAndGetStudentAsync(string cif)
     {
         var activeCookie = sessionManager.GetCookie();
 
         if (string.IsNullOrEmpty(activeCookie))
+        {
+            //Retry Koha Login
+            backgroundJobs.Enqueue<IRefreshKohaSessionJob>(
+                job => job.ExecuteLoginAsync());
+
             return KohaErrors.KohaNoSessionError("No Active Session Found in Koha");
+        }
 
         var kohaRequest = new KohaSearchPatronRequest(cif, activeCookie);
         var kohaResponse = await kohaClient.SearchPatronAsync(kohaRequest);
